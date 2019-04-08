@@ -64,7 +64,7 @@
 
 
 \Abstract{
-Táto práca popisuje vývoj chatbota pre štatutárne mesto Brno. Chatbot je moderý komunikačný prostriedok založený na konverzácii človeka s počítačom prirodzeným spôsobom prostredníctvom textovej interakcie. Motiváciou je skutočnosť, že spôsob komunikácie samosprávnej časti so svojimi obyvateľmi sa stáva zastaralým. Obyvateľom miest zvyčajne nie je poskytnutý jeden, unifikovaný zdroj informácií a noviniek ale viacero. Práve preto je pre mnohých obyvateľov náročné získavať aktuálne informácie o dianí v samospráve. Tento problém sa snažíme vyriešiť vytvorením konverzačného agenta --- chatbota, s ktorým obyvatelia samosprávy môžu komunikovať prirodzeným jazykom a jednoduchým spôsobom tak dopytovať a prijímať požadované informácie.
+Táto práca popisuje vývoj textového chatbota pre štatutárne mesto Brno. Chatbot je moderný komunikačný prostriedok založený na konverzácii človeka s počítačom prirodzeným spôsobom prostredníctvom textovej interakcie. Motiváciou je skutočnosť, že spôsob komunikácie samosprávnej časti so svojimi obyvateľmi sa stáva zastaralým. Obyvateľom miest zvyčajne nie je poskytnutý jeden, unifikovaný zdroj informácií a noviniek ale viacero. Práve preto je pre mnohých obyvateľov náročné získavať aktuálne informácie o dianí v samospráve. Tento problém sa snažíme vyriešiť vytvorením konverzačného agenta --- chatbota, s ktorým obyvatelia samosprávy môžu komunikovať prirodzeným jazykom a jednoduchým spôsobom tak dopytovať a prijímať požadované informácie.
 %
 Výsledkom práce je kompletný návrh aj implementácia chatovacieho robota, ktorý zvláda ako obecné, tak aj Brnu-špecifické otázky. Hlavným prínosom tejto práce je priblíženie samosprávy k obyvateľstvu a uľahčenie získavania informácií spôsobom primeraným dnešnej modernej dobe.
 }
@@ -77,7 +77,7 @@ Výsledkom práce je kompletný návrh aj implementácia chatovacieho robota, kt
 %}
 
 \Teaser{
-	\TeaserImage{diagram2.jpg}
+	\TeaserImage{diagram.png}
 }
 
 %PZ: co takhle vele krokodýlka (ozdoba dobrá, ale nic moc informace) dát nějakou krátkou ukázečku dialogu - ne dlohého, ale třeba vtipného... ???
@@ -102,7 +102,7 @@ Výsledkom práce je kompletný návrh aj implementácia chatovacieho robota, kt
 %--------------------------------------------------------
 \section{Úvod}
 
-Predstava moderného a pokrokového mesta pre mnohých ľudí znamená jednoduchý prístup k informáciám a ich interaktívne podanie. V dnešnej uponáhľanej dobe však obyvatelia miest nemajú čas prehľadávať zastarané weby samospráv a preto sa naskytá otázka ako zefektívniť komunikáciu úradov a magistrátu s obyvateľmi. 
+Predstava moderného a pokrokového mesta pre mnohých ľudí znamená jednoduchý prístup k informáciám a ich interaktívne podanie. V dnešnej uponáhľanej dobe však obyvatelia miest nemajú čas prehľadávať zastarané weby samospráv a preto sa naskytá otázka ako zefektívniť komunikáciu magistrátu s obyvateľmi. 
 
 %PZ: "lustrovat" je hodně ostré, "zastaralé" se vyskytuje v tomto a hned v dalším odstavci, zvažte změnu.
 
@@ -110,11 +110,11 @@ Spôsob komunikácie samosprávnych častí so svojimi obyvateľmi sa stáva zas
 
 Aktuálny stav komunikácie samosprávy s obyvateľom predstavujú konvenčné prístupy -- webové stránky, vývesné tabule, rozhlasové hlásenia, atď. Medzi silné stránky patrí hlavne ich zaužívanosť medzi ľuďmi ale aj jednoduchosť na implementáciu a správu aj malými obcami. K nedostatkom určite patrí nesúrodosť, komplikovaná dostupnosť a neaktuálnosť.
 
-Náš návrh spočíva v spojení všetkých relevantných dát do jedného kanála ktorý je schopný na vyžiadanie ihneď odpovedať a podať informácie občanom. Ako veľkú výhodu vidíme v jednoduchosti osvojenia si a použitia nami navrhovaného kanála. Navrhované riešenie totiž dokáže spracovávať dotazy v prirodzenom jazyku človeka a rovnako aj odpovedá v prirodzenom jazyku. Dotazy je možné podávať prostredníctvom dvoch textových chatovacích kanálov --- Facebook Messenger a webový chat na stránke projektu.
+Náš návrh spočíva v spojení všetkých relevantných dát do jedného kanála ktorý je schopný na vyžiadanie ihneď odpovedať a podať informácie občanom. Ako veľkú výhodu vidíme v jednoduchosti osvojenia si a použitia nami navrhovaného kanála. Navrhované riešenie totiž dokáže spracovávať dotazy v prirodzenom jazyku človeka a rovnako aj odpovedá v prirodzenom jazyku. Dotazy je možné podávať prostredníctvom dvoch textových chatovacích kanálov --- \href{https://m.me/BrnenskyBot}{Facebook Messenger} \footnote{Kroko FB -- \url{https://m.me/BrnenskyBot}} a \href{https://www.kroko.live/chat}{webový chat} \footnote{Kroko web -- \url{https://www.kroko.live/chat}} na stránkach projektu.
 
 %PZ: ylo by dobré napsat, že to je textovou konverzací - je to asi "jasné", ale někde by to mělo být explicitně. Myslím také, že by se screenshot nebo tak něco, hodilo do úvodního obrázku k nadpisu práce.
 
-Naše navrhované riešenie -- mestský chatbot Kroko má za cieľ modernizovať spôsob komunikácie samosprávy s obyvateľmi a priblížiť sa im. Opýtať sa chatbota na Facebooku ``Do kdy musím zaplatit daň za mého psa?'' a okamžite dostať odpoveď znie určite veľmi lákavo pre väčšinu ľudí.
+Naše navrhované riešenie -- mestský chatbot Kroko má za cieľ modernizovať spôsob komunikácie samosprávy s obyvateľmi a priblížiť sa im. Opýtať sa chatbota na Facebooku ``Do kdy musím zaplatit daň za mého psa?'' a okamžite dostať odpoveď znie určite veľmi lákavo pre mnohých ľudí.
 
 
 \section{Východiská}
@@ -124,16 +124,16 @@ Naše navrhované riešenie -- mestský chatbot Kroko má za cieľ modernizovať
 \subsection{Konverzačné užívateľské rozhranie}
 Ešte pred pár rokmi sa počítače ovládali výhradne pomocou myši a klávesnice. Dnes, s nástupom nových technológií, virtuálnej reality a umelej inteligencie potrebujeme oveľa sofistikovanejšie spôsoby.
 
-Konverzačné užívateľské rozhranie (ďalej len CUI - Conversational User Interface) je obecne rozhranie, ktoré napodobňuje konverzáciu so skutočným človekom prostredníctvom prirodzeného jazyka. \cite{brownlee_2018} Namiesto komunikácie s počítačom vo forme technických skratiek, akcií a syntakticky špecifických príkazov, komunikuje užívateľ svojím prirodzeným jazykom a počítaču jednoducho hovorí resp. napíše, čo má robiť.
+Konverzačné užívateľské rozhranie (ďalej len CUI - Conversational User Interface) je obecne rozhranie, ktoré napodobňuje konverzáciu so skutočným človekom prostredníctvom prirodzeného jazyka \cite{brownlee_2018}. Namiesto komunikácie s počítačom vo forme technických skratiek, akcií a syntakticky špecifických príkazov, komunikuje užívateľ svojím prirodzeným jazykom a počítaču jednoducho hovorí resp. napíše, čo má robiť.
 
-Idea počítačového systému ovládaného konverzovaním nie je novinka. Ako prvý ju využívali, síce iba v rovine science-fiction, tvorcovia literatúry a kinematografie. K vývoju reálnych systémov s CUI však dochádza až v nedávnej dobe, teda začiatkom druhej dekády 21. storočia. \cite{mielke_2016} Dôvodom toho je, že technológie potrebné k implementácii takéhoto rozhrania konečne dospeli do stavu, kedy je praktické ich použiť. Dvojica veľmi úzko prepojených odvetví informačných technológií, ktorá stojí za pokrokom CUI je odbor spracovania prirodzeného jazyka (NLP - Natural Language Processing) a umelá inteligencia (AI - Artificial Intelligence).
+Idea počítačového systému ovládaného konverzovaním nie je novinka. Ako prvý ju využívali, síce iba v rovine science-fiction, tvorcovia literatúry a kinematografie. K vývoju reálnych systémov s CUI však dochádza až v nedávnej dobe, teda začiatkom druhej dekády 21. storočia \cite{mielke_2016}. Dôvodom toho je, že technológie potrebné k implementácii takéhoto rozhrania konečne dospeli do stavu, kedy je praktické ich použiť. Dvojica veľmi úzko prepojených odvetví informačných technológií, ktorá stojí za pokrokom CUI je odbor spracovania prirodzeného jazyka (NLP - Natural Language Processing) a umelá inteligencia (AI - Artificial Intelligence).
 
 \subsection{Konverzačný agent --- chatbot}
 Konverzačný agent (CA --- Conversational Agent) je systém s konverzačným
 užívateľským rozhraním. Takýto agent predstavuje praktickú implementáciu CUI spojeného s NLP a ďalšími komponentami ako NLU (Natural Language Understanding), Speech to Text Recognition alebo znalostnou databázou.
 
 Jednou z charakteristík kvality CA je jeho schopnosť zmysluplných výmien strán dialógu. Výmenu definuje literatúra analogicky k výmene v hre -- \textit{\uv{turn}}. 
-Účastníci konverzácie sa striedajú v rozprávaní (output) a počúvaní (input). \cite{jurafsky_2019} Jedna výmena môže pozostávať i z jediného slova ale i niekoľkých viet. Najjednoduchšie systémy zvládajú jedinú výmenu, tie sú obecne jednoduché question-answering (FAQ) alebo command-and-control systémy.
+Účastníci konverzácie sa striedajú v rozprávaní (output) a počúvaní (input) \cite{jurafsky_2019}. Jedna výmena môže pozostávať i z jediného slova ale i niekoľkých viet. Najjednoduchšie systémy zvládajú jedinú výmenu, tie sú obecne jednoduché question-answering (FAQ) alebo command-and-control systémy.
 
 Zložitejšie systémy, ktoré zvládajú odpovedať na základe istých ``zapamätaných`` informácií a držať tak zmysluplnú konverzáciu viac ako jeden \textit{turn} musia implementovať podporné mechanizmy.
 Je nutné ukladať aktuálny kontext konverzácie s užívateľom ale tiež aj jeho priebežne zdieľané informácie ako vek, pohlavie, záujmy, obľuby, atď.
@@ -160,11 +160,10 @@ Navrhovaný chatbot bude schopný rozoznať zámer užívateľa vyhľadať konta
 \vspace{2mm}
 \textit{Potrebujem si vybaviť}
 
-\noindent Veľmi častou sekciou oficiálneho webu mesta je aj \emph{Potřebuji si vyřídit}. Obsahuje súrhnné informácie k najčastejším úkonom v správe mesta ako napríklad vybavenie cestovného dokladu, občianského preukazu, registrácie vozidla alebo oprávnenia k rezidentnému parkovaniu. Informácie z nej sme zaradili i do vedomostnej domény nášho konverzačného agenta.
+\noindent Veľmi často navštevovanou sekciou oficiálneho webu mesta je aj \emph{Potřebuji si vyřídit}. Obsahuje súrhnné informácie k najčastejším úkonom v správe mesta ako napríklad vybavenie cestovného dokladu, občianského preukazu, registrácie vozidla alebo oprávnenia k rezidentnému parkovaniu. Informácie z nej sme zaradili i do vedomostnej domény nášho konverzačného agenta.
 
 %PZ: možná není šikovné mít use cases jen podle toho, kdo co často potřeabuje. Ne, že by to bylo nemožné, ale je to takpvé "oportunistické". Navrhuji možná vynechat to "Druhou nejnavštěvovanější", ale dát třeba "Velmi častou"...
 
-\newpage
 \textit{Multimodálna navigácia mestom}
 
 \noindent S možnosťou získať užívateľovu aktuálnu polohu z aplikácie Messenger, je konverzačný agent vhodným ``médiom`` pre navigáciu mestom. Medzi podporované spôsoby dopravy po meste zahrňujeme celú sieť mestskej hromadnej dopravy a pešie presuny. Naším cieľom je vytvoriť užívateľsky prívetivejšie riešenie ako aktuálne najpoužívanejší vyhľadávač spojení IDOS\footnote{IDOS -- \url{https://jizdnirady.idnes.cz/brno/spojeni/}}.
@@ -186,7 +185,7 @@ Táto kapitola sumarizuje ako základné prvky technickej stránky chatbota, tak
 \subsection{Technická architektúra}
 Aplikácia chatbota Kroka je navrhnutá a vytvorená ako webová služba dostupná prostredníctvom HTTP protokolu. Rozhranie aplikácie je definované podľa pravidiel REST API architektúry. Chatbot prijíma HTTP requesty obsahujúce identifikátor užívateľa a jeho správu. Následne odpovedá s HTTP response obsahujúcou jeho odpoveď.
 
-Back-end aplikácie je zodpovedný za udržiavanie kontextu dialógu, analýzu vstupných správ, určenie zámeru užívateľa a nakoniec vytvorenie vhodnej odpovedi k vráteniu.
+Back-end aplikácie je zodpovedný za udržiavanie kontextu dialógu, analýzu vstupných správ, určenie zámeru užívateľa a vytvorenie vhodnej odpovedi k vráteniu.
 Samotná aplikácia využíva dve služby tretích strán --- parser českého jazyka \emph{UDPipe} a komponentu na určovanie zámeru užívateľa \emph{Wit.ai}.
 
 \newpage
@@ -208,7 +207,7 @@ Samotná aplikácia využíva dve služby tretích strán --- parser českého j
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.65\linewidth]{witai.png}
+	\includegraphics[width=0.8\linewidth]{witai2.png}
 	\caption{Príklad využitia nástroja wit.ai.}
 	\label{wit}
 \end{figure}
@@ -217,24 +216,25 @@ Samotná aplikácia využíva dve služby tretích strán --- parser českého j
 \subsection{Frame-based architektúra}
 
 Chatbot Kroko využíva pri riadení jednotlivých use-casov tzv. \emph{frame-based} architektúru.
-S \emph{frame-based} architektúrou, informácie nutné k extrahovaniu z užívateľových dotazov sú reprezentované ako množina rámcov (frames), každý obsahujúci jeden alebo viac slotov ktoré zároveň nesú informáciu o tom, aké typ hodnôt môžu nadobúdať. \cite{jurafsky_2019}
-Tento prístup bol predstavený v roku 1977 implementovaný do cestovného asistenta GUS schopného vyhľadávať a rezervovať letenky. Pre zámer vyhľadávania letenky je rámec slotov znázornený na obrázku \ref{alto}.
+
+S \emph{frame-based} architektúrou, informácie nutné k extrahovaniu z užívateľových dotazov sú reprezentované ako množina rámcov (frames). Každý rámec obsahuje jeden alebo viac slotov (slots) ktoré zároveň nesú informáciu o tom, aký datový typ môžu nadobúdať \cite{jurafsky_2019}. Pojem ``datový typ`` je v tomto kontexte myslený abstraktnejšie --- a to napríklad \emph{adresa, časový interval, spôsob dopravy, \ldots} 
+Tento prístup bol predstavený v roku 1977 a následne implementovaný do cestovného asistenta GUS schopného vyhľadávať a rezervovať letenky. Pre zámer vyhľadávania letenky je rámec slotov znázornený na obrázku \ref{alto}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.7\linewidth]{Slots.jpg}
+  \includegraphics[width=0.95\linewidth]{slots.png}
   \caption{Rámce a sloty pre use-case cestovného agenta.}
   \label{alto}
 \end{figure}
 
-\noindent Interakcia s takýmto agentom prebieha pokiaľ sa príslušnými hodnotami nenaplnia všetky sloty. 
-Samotné typy môžu byť ďalej hierarchicky delené a získavané od užívateľa v samostatnom rámci. Napríklad dátum človek nemusí špecifikovať vždy naraz celý, preto sa chatbot môže dopytovať na ostatné zložky dátumu (deň, mesiac, rok).
+Interakcia s takýmto agentom prebieha pokiaľ sa príslušnými hodnotami nenaplnia všetky sloty. 
+Samotné datové typy slotov môžu byť ďalej hierarchicky štruktúrované a získavané od užívateľa v samostatnom rámci. Napríklad dátum človek nemusí špecifikovať naraz a celý, preto sa chatbot môže dopytovať na ostatné zložky dátumu zvlášť (deň, mesiac, rok).
 
 \subsection{Udržiavanie kontextu}
 
 Pre kvalitný užívateľský zážitok je nutné v konverzácii udržiavať kontext. Kontext sa zvyčajne nastavuje pri odoslaní odpovede užívateľovi. Následne pri prijatí ďalšej správy od užívateľa dokážeme určiť, čoho sa odpoveď týka, resp. v akom kontexte užívateľ hovorí.
 
-Mechanizmy, ako najlepšie udržiavať kontext u konverzačných agentov a chatbotov zatiaľ nie sú v literatúre popísané a preto sme museli navrhnúť vlastný systém. Kontext konverzácie s užívateľom je v našom chatbote reprezentovaný perzistentným databázovým objektom ktorý sa skladá z nasledovných dát.
+Mechanizmy, ako najlepšie udržiavať kontext u konverzačných agentov a chatbotov zatiaľ nie sú v literatúre popísané a preto sme navrhli vlastný systém. Kontext konverzácie s užívateľom je v našom chatbote reprezentovaný perzistentným databázovým objektom ktorý sa skladá z nasledovných dát.
 
 \begin{itemize}
     \item \textbf{user\_id} -- jedinečný identifikátor užívateľa
@@ -248,15 +248,20 @@ Na obrázku \ref{kontext} je znázornené nastavenie kontextu. Následne pri pri
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.7\linewidth]{context.png}
+  \includegraphics[width=0.85\linewidth]{context3.png}
   \caption{Riadenie kontextu.}
   \label{kontext}
 \end{figure}
 
 \section{Testovanie}
-Po implementácii chatbota bude nasledovať užívateľské testovanie. V príprave sú podrobné end-user testy ktoré budú merať viacero faktorov. Užívatelia budú hodnotiť kvalitatívne črty --- jednoduchosť použitia, intuitívnosť, zážitok \ldots.
+V pokročilej fáze implementácie chatbota prebieha užívateľské testovanie. 
+Vytvorené boli podrobné end-user testy ktoré merajú viacero faktorov nášho chatbota. Užívatelia hodnotia kvalitatívne črty --- jednoduchosť použitia, intuitívnosť, zážitok, \ldots.
 
-Pri porovnaní s tradičnými informačnými kanálmi budeme merať časový rozdiel v nájdení rovnakej informácie prostredníctvom chatbota vs. prostredníctvom pôvodných kanálov.
+Rovnako bolo do testovania zahrnutých niekoľko prieskumných otázok, ktoré majú za cieľ zistiť sentiment českých a slovenských užívateľov vo vzťahu k chatbotom. Prepokladáme, že takýto prieskum môže byť veľmi hodnotný pre potencionálnych vývojárov chatbotov a konverzačných rozhraní. Zverejnením výsledkov prieskumu po jeho ukončení chceme stimulovať a rozhýbať českú a slovenskú komunitu chatbot a NLP vývojárov.
+
+Pre čo najvyššiu relevantnosť užívateľského testovania potrebujeme čo najviac vyplnení --- ``testovacích subjektov``. Preto sme zvolili neosobný, interaktívny internetový \href{https://www.kroko.live/testovani}{dotazník} \footnote{Chatbot dotazník -- \url{https://www.kroko.live/testovani}} ktorý sa snaží ľahko stráviteľnou formou podať 21 otázok. Otázky sme zostavovali za pomoci webových zdrojov \cite{veal} a \cite{content_2019}.
+Naším cieľom je získať čo najviac vyplnení, minimálne ale aspoň od 1000 unikátnych užívateľov z územia ČR a SR, a následne ich analyzovať. Dosiahnuť tento počet chceme motiváciou --- finálnym zlosovaním o výhercu sudu piva, platenou reklamou PPC na platforme Facebook a virálnym zdieľaním vo vývojárskej komunite.
+Po 24 hodinách od spustenia sme zaznamenali úspešných 133 vyplnení, chatbot samotný má približne rovnaký počet unikátnych interakcií.
 
 \section{Záver}
 
